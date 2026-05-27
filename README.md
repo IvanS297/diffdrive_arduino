@@ -1,4 +1,5 @@
-# diffdrive_arduino
-
-
-This node is designed to provide an interface between a `diff_drive_controller` from `ros_control` and an Arduino running firmware from `ros_arduino_bridge`.
+# НЕ ИСПОЛЬЗУЙТЕ ВЕТКУ MAIN, используйте HUMBLE
+```bash
+git clone https://github.com/IvanS297/diffdrive_arduino
+git checkout humble
+```
