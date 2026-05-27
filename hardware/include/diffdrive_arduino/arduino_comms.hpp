@@ -110,6 +110,36 @@ public:
     send_msg(ss.str());
   }
 
+  void read_imu_values(double &ax, double &ay, double &az, double &gx, double &gy, double &gz, double &mx, double &my, double &mz)
+  {
+    std::string response = send_msg("i\r");
+    std::vector<std::string> values;
+    char delimiter = ',';
+    std::string token;
+    std::istringstream token_stream(response);
+    while (std::getline(token_stream, token, delimiter))
+    {
+      values.push_back(token);
+    }
+
+    if (values.size() != 9)
+    {
+      std::cerr << "Error! Expected 9 values from IMU but got " << values.size() << std::endl;
+      return;
+    }
+
+    ax = std::stod(values[0]);
+    ay = std::stod(values[1]);
+    az = std::stod(values[2]);
+    gx = std::stod(values[3]);
+    gy = std::stod(values[4]);
+    gz = std::stod(values[5]);
+    mx = std::stod(values[6]);
+    my = std::stod(values[7]);
+    mz = std::stod(values[8]);
+
+  }
+
 private:
     LibSerial::SerialPort serial_conn_;
     int timeout_ms_;
